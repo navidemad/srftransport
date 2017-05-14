@@ -14,29 +14,33 @@ cache:
 
 env:
   global:
-    - ANDROID_API=25
-    - EMULATOR_API=21
-    - ANDROID_BUILD_TOOLS=25.0.3
+    - EMULATOR_API_LEVEL=25
+    - ANDROID_API_LEVEL=25
+    - ANDROID_BUILD_TOOLS_VERSION=25.0.3
     - ADB_INSTALL_TIMEOUT=5
 
 android:
+  licenses:
+    - 'android-sdk-preview-license-.+'
+    - 'android-sdk-license-.+'
+    - 'google-gdk-license-.+'
   components:
     - tools
     - platform-tools
     - tools
-    - build-tools-$ANDROID_BUILD_TOOLS
-    - android-$ANDROID_API
+    # The BuildTools version used by your project
+    - build-tools-$ANDROID_BUILD_TOOLS_VERSION
+    # The SDK version used to compile your project
     - android-$EMULATOR_API_LEVEL
+    - android-$ANDROID_API_LEVEL
+    # Additional components
     - extra-google-google_play_services
     - extra-google-m2repository
-    - extra-android-m2repository # for design library
-    - addon-google_apis-google-19 # google play services
-    - sys-img-armeabi-v7a-addon-google_apis-google-$ANDROID_API_LEVEL
-    - sys-img-armeabi-v7a-addon-google_apis-google-$EMULATOR_API_LEVEL
-  licenses:
-    - 'android-sdk-preview-license-52d11cd2'
-    - 'android-sdk-license-.+'
-    - 'google-gdk-license-.+'
+    - extra-android-m2repository
+    - addon-google_apis-google-$EMULATOR_API_LEVEL
+    - addon-google_apis-google-$ANDROID_API_LEVEL
+    - sys-img-armeabi-v7a-google_apis-$EMULATOR_API_LEVEL
+    - sys-img-armeabi-v7a-google_apis-$ANDROID_API_LEVEL
 
 before_install:
   - chmod +x gradlew
@@ -46,7 +50,9 @@ install:
   - echo y | android update sdk --all --no-ui
 
 before_script:
-  - echo no | android create avd --force -n test -t android-$ANDROID_API --abi armeabi-v7a --skin 480x800
+  - mkdir -p "$ANDROID_HOME/licenses"
+  - cp ./google-licenses/* "$ANDROID_HOME/licenses/"
+  - echo no | android create avd --force -n test -t android-$ANDROID_API --abi google_apis/armeabi-v7a --skin 480x800
   - emulator -avd test -no-audio -no-window &
   - android-wait-for-emulator
   - adb shell settings put global window_animation_scale 0 &
