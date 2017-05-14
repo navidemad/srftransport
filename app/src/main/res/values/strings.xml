@@ -1,4 +1,17 @@
 <resources>
     <string name="app_name">VtcTools</string>
-    <string name="title_activity_maps">Map</string>
+    <string name="from">Adresse de départ</string>
+    <string name="to">Adresse d\'arrivée</string>
+    <string name="calculate">Calculer le prix de la course</string>
+    <string name="distance">Distance</string>
+    <string name="duration">Durée</string>
+    <string name="price">Prix de la course</string>
+    <string name="api_distance_matrix_unknown_field_for_googlemaps">Le point de départ et/ou la destination de cet élément n\'ont pas pu être géocodés.</string>
+    <string name="api_distance_matrix_zero_results">Aucun itinéraire n\'a pu être identifié entre le point de départ et la destination.</string>
+    <string name="api_distance_matrix_json_exception">Il semblerait que Google est fait des modifications dans son API.</string>
+    <string name="api_distance_matrix_invalid_request">La requête fournie n\'est pas valide</string>
+    <string name="api_distance_matrix_max_elements_exceeded">Le produit du nombre de points de départ et du nombre de destinations dépasse la valeur spécifiée dans le champ limit de la requête</string>
+    <string name="api_distance_matrix_over_query_limit">Le service a reçu trop de requêtes de la part de votre application au cours de la période autorisée.</string>
+    <string name="api_distance_matrix_request_denied">Le service n\'a pas autorisé votre application à utiliser le service Distance Matrix.</string>
+    <string name="api_distance_matrix_unknown_error">Une requête Distance Matrix n\'a pas pu être traitée en raison d\'une erreur du serveur. Si vous essayez à nouveau, la requête pourrait aboutir.</string>
 </resources>

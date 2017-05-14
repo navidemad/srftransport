@@ -4,6 +4,7 @@ env:
  global:
     - ANDROID_API_LEVEL=25
     - ANDROID_BUILD_TOOLS_VERSION=25.0.2
+    - ADB_INSTALL_TIMEOUT=8
 android:
  licenses:
     - 'android-sdk-preview-license-.+'
@@ -22,13 +23,26 @@ android:
     - extra-android-m2repository
     - addon-google_apis-google-$ANDROID_API_LEVEL
     - sys-img-armeabi-v7a-google_apis-25
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+    - $HOME/.android/build-cache
+before_install:
+  - chmod +x gradlew
+  - ./gradlew dependencies || true
 before_script:
-    # Prepare pre-accepted licenses to not be promted at installation
-    - mkdir -p "$ANDROID_HOME/licenses"
-    - cp ./google-licenses/* "$ANDROID_HOME/licenses/"
-    - echo no | android create avd --force -n test -t android-25 --abi google_apis/armeabi-v7a
-    - emulator -avd test -no-audio -no-window &
-    - android-wait-for-emulator
-    - adb shell input keyevent 82 &
+  - mkdir -p "$ANDROID_HOME/licenses"
+  - cp ./google-licenses/* "$ANDROID_HOME/licenses/"
+  - echo no | android create avd --force -n test -t android-25 --abi google_apis/armeabi-v7a
+  - emulator -avd test -no-audio -no-window &
+  - android-wait-for-emulator
+  - adb shell settings put global window_animation_scale 0 &
+  - adb shell settings put global transition_animation_scale 0 &
+  - adb shell settings put global animator_duration_scale 0 &
+  - adb shell input keyevent 82 &
 script:
-    - ./gradlew build check
+  - ./gradlew clean build connectedCheck -PdisablePreDex --stacktrace

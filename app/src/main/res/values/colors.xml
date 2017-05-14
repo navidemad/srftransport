@@ -2,5 +2,24 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#444444</color>
+    <color name="colorAppBackground">#464545</color>
+    <color name="light_grey">#cccccc</color>
+    <color name="colorTransparent">#00000000</color>
+    <color name="background_dark_semi">#20000000</color>
+    <color name="colorGreyLight">#ededed</color>
+    <color name="colorGreenLight">#e9ffe6</color>
+    <color name="colorBlue">#ff57a7af</color>
+    <color name="colorWhite">#ffffffff</color>
+    <color name="colorFacebook">#3b5998</color>
+    <color name="colorTwitter">#55acee</color>
+    <color name="colorSuccessBackground">#dff0d8</color>
+    <color name="colorSuccessText">#3c763d</color>
+    <color name="colorWarningText">#8a6d3b</color>
+    <color name="colorErrorBackground">#f2dede</color>
+    <color name="colorErrorText">#a94442</color>
+    <color name="colorMetroUIGreen">#99b433</color>
+    <color name="colorMetroUIBlue">#55acee</color>
+    <color name="colorMetroUIOrange">#da532c</color>
+    <color name="colorMetroUICyan"> #00aba9</color>
 </resources>
