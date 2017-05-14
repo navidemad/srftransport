@@ -1,0 +1,19 @@
+language: android
+jdk:
+    - oraclejdk8
+env:
+  global:
+    - ANDROID_TARGET=android-25
+    - ANDROID_ABI=armeabi-v7a
+android:
+  components:
+    - platform-tools
+    - tools
+    - build-tools-25.0.3
+    - tools
+    - android-25
+    - extra-google-m2repository
+    - extra-android-m2repository
+    - sys-img-${ANDROID_ABI}-${ANDROID_TARGET}
+sudo: false
+script: ./gradlew build check
